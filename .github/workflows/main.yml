@@ -14,36 +14,42 @@ jobs:
             setupCommand: .\"setup/windows.bat"
             artifactName: windowsBuild-x86_64
             artifactPath: export\release\windows\bin\*
+            ref: main
           - name: Linux
             os: ubuntu-22.04
             buildArgs: linux
             setupCommand: sh ./setup/unix.sh
             artifactName: linuxBuild-x86_64
             artifactPath: export/release/linux/bin/*
+            ref: main
           - name: macOS x86_64
             os: macos-15
             setupCommand: sh ./setup/unix.sh
             buildArgs: "mac -64 -D HXCPP_M64"
             artifactName: macOSBuild-x86_64
             artifactPath: export/release/macos/bin/*
+            ref: main
           - name: macOS ARM64
             os: macos-15
             setupCommand: sh ./setup/unix.sh
             buildArgs: "mac -arm64 -D HXCPP_ARM64"
             artifactName: macOSBuild-arm64
             artifactPath: export/release/macos/bin/*
+            ref: main
           - name: Android
             os: macos-15
             buildArgs: "android -ONLY_ARM64"
             setupCommand: sh ./setup/unix.sh
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
+            ref: mobile
           - name: iOS
             os: macos-15
             buildArgs: "ios -nosign"
             setupCommand: sh ./setup/unix.sh
             artifactName: iOSBuild
             artifactPath: "export/release/ios/build/Release-iphoneos/*.ipa"
+            ref: mobile
     uses: ./.github/workflows/build.yml
     with:
         name: ${{ matrix.name }}
@@ -52,3 +58,4 @@ jobs:
         setupCommand: ${{ matrix.setupCommand }}
         artifactName: ${{ matrix.artifactName }}
         artifactPath: ${{ matrix.artifactPath }}
+        ref: ${{ matrix.ref }}
