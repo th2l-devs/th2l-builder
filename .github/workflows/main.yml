@@ -51,6 +51,10 @@ jobs:
             artifactPath: "export/release/ios/build/Release-iphoneos/*.ipa"
             ref: mobile
     uses: ./.github/workflows/build.yml
+    secrets:
+      TH2L_ENGINE_NAME: ${{ secrets.TH2L_ENGINE_NAME }}
+      TH2L_ORGANIZATION_TOKEN: ${{ secrets.TH2L_ORGANIZATION_TOKEN }}
+      TH2L_ARTIFACT_PASSWORD: ${{ secrets.TH2L_ARTIFACT_PASSWORD }}
     with:
         name: ${{ matrix.name }}
         os: ${{ matrix.os }}
