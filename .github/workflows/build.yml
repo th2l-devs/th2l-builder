@@ -21,6 +21,9 @@ on:
       artifactPath:
         required: true
         type: string
+      ref:
+        required: true
+        type: string
 
 env:
   HAXE_VERSION: 4.3.6
