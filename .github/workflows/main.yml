@@ -13,7 +13,7 @@ jobs:
             buildArgs: windows
             setupCommand: .\"setup/windows.bat"
             artifactName: windowsBuild-x86_64
-            artifactPath: export\release\windows\bin\*
+            artifactPath: export/release/windows/bin/*
             ref: main
           - name: Linux
             os: ubuntu-22.04
