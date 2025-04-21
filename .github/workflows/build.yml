@@ -24,6 +24,13 @@ on:
       ref:
         required: true
         type: string
+    secrets:
+      TH2L_ENGINE_NAME:
+        required: true
+      TH2L_ORGANIZATION_TOKEN:
+        required: true
+      TH2L_ARTIFACT_PASSWORD:
+        required: true
 
 env:
   HAXE_VERSION: 4.3.6
