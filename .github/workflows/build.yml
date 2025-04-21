@@ -33,6 +33,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
+        with:
+          repository: ${{ secrets.TH2L_ENGINE_NAME }}
+          ref: ${{ inputs.ref }}
+          token: ${{ secrets.TH2L_ORGANIZATION_TOKEN }}
 
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
