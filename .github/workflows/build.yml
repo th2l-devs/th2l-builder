@@ -54,7 +54,7 @@ jobs:
         # if: inputs.name == 'Android' || inputs.name == 'iOS'
         uses: actions/checkout@main
         with:
-          path: ${{ runner.temp }}/${{ secrets.TH2L_MODPACK_NAME }}
+          path: ${{ secrets.TH2L_MODPACK_NAME }}
           repository: ${{ secrets.TH2L_MODPACK_NAME }}
           ref: ${{ inputs.ref }}
           token: ${{ secrets.TH2L_ORGANIZATION_TOKEN }}
@@ -63,11 +63,11 @@ jobs:
         # if: inputs.name == 'Android' || inputs.name == 'iOS'
         shell: pwsh
         run: |
-            Copy-Item -Path ${{ runner.temp }}/${{ secrets.TH2L_MODPACK_NAME }}/game/mods/songs -Destination assets -Force
-            Copy-Item -Path ${{ runner.temp }}/${{ secrets.TH2L_MODPACK_NAME }}/game/mods/fonts -Destination fonts -Force
-            Remove-Item ${{ runner.temp }}/${{ secrets.TH2L_MODPACK_NAME }}/game/mods/songs -Force
-            Remove-Item ${{ runner.temp }}/${{ secrets.TH2L_MODPACK_NAME }}/game/mods/fonts -Force
-            Copy-Item -Path ${{ runner.temp }}/${{ secrets.TH2L_MODPACK_NAME }}/game/mods -Destination assets -Force
+            Copy-Item -Path ${{ secrets.TH2L_MODPACK_NAME }}/game/mods/songs -Destination assets -Force
+            Copy-Item -Path ${{ secrets.TH2L_MODPACK_NAME }}/game/mods/fonts -Destination fonts -Force
+            Remove-Item ${{ secrets.TH2L_MODPACK_NAME }}/game/mods/songs -Force
+            Remove-Item ${{ secrets.TH2L_MODPACK_NAME }}/game/mods/fonts -Force
+            Copy-Item -Path ${{ secrets.TH2L_MODPACK_NAME }}/game/mods -Destination assets -Force
 
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
