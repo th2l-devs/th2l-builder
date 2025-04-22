@@ -27,6 +27,8 @@ on:
     secrets:
       TH2L_ENGINE_NAME:
         required: true
+      TH2L_MODPACK_NAME:
+        required: true
       TH2L_ORGANIZATION_TOKEN:
         required: true
       TH2L_ARTIFACT_PASSWORD:
