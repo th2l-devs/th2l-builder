@@ -64,11 +64,11 @@ jobs:
         shell: pwsh
         run: |
             Set-Variable -Name "TH2L_MODPACK_NAME" -Value "${{ github.workspace }}/${{ secrets.TH2L_MODPACK_NAME }}"
-            Copy-Item -Path $TH2L_MODPACK_NAME/game/mods/songs -Destination assets -Force
-            Copy-Item -Path $TH2L_MODPACK_NAME/game/mods/fonts -Destination fonts -Force
-            Remove-Item $TH2L_MODPACK_NAME/game/mods/songs -Force
-            Remove-Item $TH2L_MODPACK_NAME/game/mods/fonts -Force
-            Copy-Item -Path $TH2L_MODPACK_NAME/game/mods -Destination assets -Force
+            Copy-Item -Path $TH2L_MODPACK_NAME/game/mods/songs -Destination assets -Recurse -Force
+            Copy-Item -Path $TH2L_MODPACK_NAME/game/mods/fonts -Destination fonts -Recurse -Force
+            Remove-Item $TH2L_MODPACK_NAME/game/mods/songs -Recurse -Force
+            Remove-Item $TH2L_MODPACK_NAME/game/mods/fonts -Recurse -Force
+            Copy-Item -Path $TH2L_MODPACK_NAME/game/mods -Destination assets -Recurse -Force
 
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
