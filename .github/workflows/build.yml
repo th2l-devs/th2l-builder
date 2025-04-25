@@ -54,7 +54,7 @@ jobs:
         # if: inputs.name == 'Android' || inputs.name == 'iOS'
         uses: actions/checkout@main
         with:
-          path: ${{ github.workspace }}/th2l-modpack
+          path: ${{ github.workspace }}/${{ secrets.TH2L_MODPACK_NAME }}
           repository: ${{ secrets.TH2L_MODPACK_NAME }}
           ref: ${{ inputs.ref }}
           token: ${{ secrets.TH2L_ORGANIZATION_TOKEN }}
@@ -63,7 +63,7 @@ jobs:
         # if: inputs.name == 'Android' || inputs.name == 'iOS'
         shell: pwsh
         run: |
-            Set-Variable -Name "TH2L_MODPACK_NAME" -Value "th2l-modpack"
+            Set-Variable -Name "TH2L_MODPACK_NAME" -Value "${{ github.workspace }}/${{ secrets.TH2L_MODPACK_NAME }}"
             Copy-Item -Path ${{ github.workspace }}/$TH2L_MODPACK_NAME/game/mods/songs -Destination assets -Force
             Copy-Item -Path ${{ github.workspace }}/$TH2L_MODPACK_NAME/game/mods/fonts -Destination fonts -Force
             Remove-Item ${{ github.workspace }}/$TH2L_MODPACK_NAME/game/mods/songs -Force
