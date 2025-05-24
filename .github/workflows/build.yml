@@ -71,9 +71,18 @@ jobs:
             Copy-Item -Path $TH2L_MODPACK_NAME/game/mods -Destination assets -Recurse -Force
 
       - name: Setup Haxe
+        if: inputs.name != 'Linux ARM64'
         uses: krdlab/setup-haxe@master
         with:
           haxe-version: ${{ env.HAXE_VERSION }}
+
+      - name: Setup Haxe (Linux ARM)
+        if: inputs.name == 'Linux ARM64'
+        run: |
+          sudo add-apt-repository ppa:haxe/releases -y
+          sudo apt update
+          sudo apt-get install -y haxe neko
+          haxelib setup ~/haxelib
 
       - name: Setup Android NDK
         if: inputs.name == 'Android'
