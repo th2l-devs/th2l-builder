@@ -8,16 +8,30 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: Windows
+          - name: Windows x86_64
             os: windows-2025
-            buildArgs: windows
+            buildArgs: "windows -final -D officialBuild"
             setupCommand: .\"setup/windows.bat"
             artifactName: windowsBuild-x86_64
             artifactPath: export/release/windows/bin/*
             ref: main
-          - name: Linux
+          - name: Windows ARM64
+            os: windows-2025
+            buildArgs: "windows -arm64 -final -D HXCPP_ARM64 -D officialBuild"
+            setupCommand: .\"setup/windows.bat"
+            artifactName: windowsBuild-x86_64
+            artifactPath: export/release/windows/bin/*
+            ref: main
+          - name: Linux x86_64
             os: ubuntu-22.04
-            buildArgs: linux
+            buildArgs: "linux -final -D officialBuild"
+            setupCommand: sh ./setup/unix.sh
+            artifactName: linuxBuild-x86_64
+            artifactPath: export/release/linux/bin/*
+            ref: main
+          - name: Linux ARM64
+            os: ubuntu-22.04-arm
+            buildArgs: "linux -arm64 -final -D HXCPP_ARM64 -D officialBuild"
             setupCommand: sh ./setup/unix.sh
             artifactName: linuxBuild-x86_64
             artifactPath: export/release/linux/bin/*
@@ -25,27 +39,27 @@ jobs:
           - name: macOS x86_64
             os: macos-15
             setupCommand: sh ./setup/unix.sh
-            buildArgs: "mac -64 -D HXCPP_M64"
+            buildArgs: "mac -64 -final -D HXCPP_M64 -D officialBuild"
             artifactName: macOSBuild-x86_64
             artifactPath: export/release/macos/bin/*
             ref: main
           - name: macOS ARM64
             os: macos-15
             setupCommand: sh ./setup/unix.sh
-            buildArgs: "mac -arm64 -D HXCPP_ARM64"
+            buildArgs: "mac -arm64 -final -D HXCPP_ARM64 -D officialBuild"
             artifactName: macOSBuild-arm64
             artifactPath: export/release/macos/bin/*
             ref: main
           - name: Android
             os: macos-15
-            buildArgs: "android -ONLY_ARM64"
+            buildArgs: "android -ONLY_ARM64 -final -D officialBuild"
             setupCommand: sh ./setup/unix.sh
             artifactName: androidBuild
             artifactPath: "export/release/android/bin/app/build/outputs/apk/release/*.apk"
             ref: mobile
           - name: iOS
             os: macos-15
-            buildArgs: "ios -nosign"
+            buildArgs: "ios -nosign -final -D officialBuild"
             setupCommand: sh ./setup/unix.sh
             artifactName: iOSBuild
             artifactPath: "export/release/ios/build/Release-iphoneos/*.ipa"
