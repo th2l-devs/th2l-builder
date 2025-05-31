@@ -120,7 +120,7 @@ jobs:
       - name: Upload Encrypted Artifact
         uses: AlexGidarakos/upload-encrypted-artifact@main
         with:
-          local-name: ${{ inputs.artifactName }}.7z
+          local-name: ${{ inputs.artifactName }}.tar.7z
           remote-name: ${{ inputs.artifactName }}
           source: ${{ inputs.artifactPath }}
           password: ${{ secrets.TH2L_ARTIFACT_PASSWORD }}
